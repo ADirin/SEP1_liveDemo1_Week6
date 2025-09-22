@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch:'master' url:'https://github.com/ADirin/SEP1_liveDemo1_Week6.git'
+                git branch:'master', url:'https://github.com/ADirin/SEP1_liveDemo1_Week6.git'
             }
         }
 
