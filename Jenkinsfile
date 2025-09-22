@@ -23,6 +23,13 @@ stages {
         }
 
     }
+    stage('Test') {
+                steps {
+                    bat 'mvn test'  // Run tests
+                    // List all files in target directory to see what's generated
+                    bat 'dir target /s'
+                }
+    }
 
 }
 
