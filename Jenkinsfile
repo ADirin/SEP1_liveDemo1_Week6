@@ -1,37 +1,52 @@
 pipeline {
     agent any
-tools {
-     maven 'Maven3'
-}
-stages {
-    stage ('check'){
-        steps {
-        git branch: 'master', url:'https://github.com/ADirin/SEP1_liveDemo1_Week6.git'
-        echo 'hello world'
 
-        }
-    }
-    stage('build') {
-        steps {
-            bat 'mvn clean install' //test it
-        }
+    tools {
+        maven 'Maven3'   // Make sure 'Maven3' is configured in Jenkins tools
     }
 
-    stage ('report') {
-        steps {
-            bat  'mvn test jacoco:report' //
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch:'master' url:'https://github.com/ADirin/SEP1_liveDemo1_Week6.git'
+            }
         }
 
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                bat 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests with coverage...'
+                // Run tests and generate JaCoCo report
+                bat 'mvn test jacoco:report'
+
+                // Optional: list all files in target to debug
+                bat 'dir target /s'
+            }
+        }
     }
-    stage('Test') { // new jacoco report
-                steps {
-                    bat 'mvn test'  // Run tests
-                    // List all files in target directory to see what's generated
-                    bat 'dir target /s'
-                }
+
+    post {
+        always {
+            // Publish JUnit test results
+            junit '**/target/surefire-reports/*.xml'
+
+            // Publish JaCoCo HTML report
+            publishHTML([
+                reportDir: 'target/site/jacoco',
+                reportFiles: 'index.html',
+                reportName: 'JaCoCo Coverage Report',
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                allowMissing: true
+            ])
+
+            echo 'Pipeline completed with tests and coverage.'
+        }
     }
-
-}
-
-
 }
