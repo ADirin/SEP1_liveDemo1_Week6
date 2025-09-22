@@ -23,7 +23,7 @@ stages {
         }
 
     }
-    stage('Test') {
+    stage('Test') { // new jacoco report
                 steps {
                     bat 'mvn test'  // Run tests
                     // List all files in target directory to see what's generated
