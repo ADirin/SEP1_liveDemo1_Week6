@@ -13,7 +13,7 @@ stages {
     }
     stage('build') {
         steps {
-            bat 'mvn clean install'
+            bat 'mvn clean install' //test it
         }
     }
 
