@@ -6,7 +6,7 @@ tools {
 stages {
     stage ('check'){
         steps {
-        git branch 'master', url:''
+        git branch 'master', url:'https://github.com/ADirin/SEP1_liveDemo1_Week6.git'
         echo 'hello world'
 
         }
