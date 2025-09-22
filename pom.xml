@@ -22,15 +22,11 @@
             <version>5.11.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
+
     <build>
-        <finalName>timecal</finalName>
+        <finalName>caljar</finalName>
         <plugins>
             <!-- Maven Compiler Plugin -->
             <plugin>
@@ -39,9 +35,6 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
-                    <compilerArgs>
-                        <arg>--enable-preview</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
 
@@ -53,7 +46,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>TimeCal</mainClass>
+                            <mainClass>Cal</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
