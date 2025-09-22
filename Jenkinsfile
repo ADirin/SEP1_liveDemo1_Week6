@@ -19,7 +19,7 @@ stages {
 
     stage ('report') {
         steps {
-            bat  'mvn test jacoco:report' //
+            bat  'mvn test jacoco:report' //bat 'mvn test jacoco:report'
         }
 
     }
